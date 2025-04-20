@@ -1,0 +1,270 @@
+/* Căn giữa toàn page */
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cccc; /* hoặc màu bạn muốn */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Login {
+  margin-bottom: 100px;
+  /* display: none; */
+}
+
+/* Box login chính */
+.login-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  padding: 30px 40px;
+  background-color: #568171;
+  border-radius: 10px;
+  box-shadow: 0 30px 15px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+} 
+
+/* Tiêu đề */
+.login-container h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 0.75px;
+  text-align: center;
+}
+
+/* Đoạn mô tả */
+.login-container h5 {
+  margin: 0 0 20px;
+  color: #C4DAD2;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.3;
+  letter-spacing: 0.6px;
+  text-align: justify;
+}
+
+.login-container .login-Closed-icon {
+  position: absolute;
+  background: url(../../assets/icons/close_icon.svg) no-repeat center center;
+  width: 24px;
+  height: 24px;
+  right: 5%;
+  top: 5%;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.login-container .login-Closed-icon:hover {
+  filter: 
+    brightness(0);
+}
+
+
+/* Nhóm input */
+.login-container .input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container .input-group p {
+  margin-right: auto;
+  margin-left: 18px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* Các input text/password */
+.login-container .form-input {
+  width: 100%;
+  height: 56px;                /* Chiều cao cố định */
+  padding: 0 20px;             /* Padding trái phải */
+  border: none;
+  border-radius: 16px;
+  background: rgba(244, 245, 248, 0.61);
+  font-size: 16px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.login-container .form-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgba(244, 245, 248, 0.61);
+}
+
+.login-container .form-input-extension {
+  background: #F7F7FF !important;
+}
+
+.login-container .form-input::placeholder {
+  color: #999;
+}
+
+/* Wrapper để đặt icon mắt */
+.login-container .password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Icon “mắt”*/
+.login-container .password-wrapper .eye-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+}
+/* ẩn mật khẩu */
+.eye-icon.closed {
+  background: url('../../assets/eye_Close.svg') no-repeat center center;
+}
+/* hiện mật khẩu */
+.eye-icon.open {
+  background: url('../../assets/eye_Open.svg') no-repeat center center;
+}
+
+.login-container .remember-and-forgot-pasword {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.remember-and-forgot-pasword .remember-me {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 12px;
+
+}
+
+.remember-and-forgot-pasword .remember-me-checkbox {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+.remember-and-forgot-pasword .remember-me-label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+
+.remember-and-forgot-pasword .form-forgot-password {
+  margin-left: auto;
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+}
+
+.login-container .form-forgot-password:hover {
+  color: #85A947;
+}  
+
+.login-container .login-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+/* Nút Google Login */
+.login-group .other-login {
+  flex: 1;
+  height: 52px;
+  border: 1px solid #222;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  margin-left: auto;
+}
+
+.login-group .other-login:hover {
+  border-color: red;
+}
+
+/* chèn icon */
+.login-group .other-login::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url('../../assets/icons/icon_Goggle.svg') no-repeat center center;
+  background-size: contain;
+  margin: 0 63px;
+  transition: filter .2s;
+}
+
+.login-group .other-login:hover::before {
+  filter: brightness(0)
+    invert(27%)
+    sepia(70%)
+    saturate(900%)
+    hue-rotate(-10deg);
+}
+
+
+/* Nút Login */
+.login-group button {
+  flex: 3;
+  height: 52px;
+  border: none;
+  border-radius: 16px;
+  background-color: #C4DAD2;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container button:hover {
+  background-color: #E9EFEC;
+}
+
+/*Tùy Chọn đăng kí*/
+.signup-prompt {
+  display: block;
+  float: left;
+  font-size: 17px;
+  font-style: normal;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+}
+
+.signup-prompt > p {
+  color: #F4FFC3;
+  font-weight: 400;
+}
+
+.signup-prompt .signup-link {
+  font-weight: 700;
+  color: #FFF;
+}
