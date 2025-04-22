@@ -2,8 +2,7 @@ import '../styles/Home.css'
 import { Link, Navigate } from 'react-router-dom'
 
 import { useState } from 'react';
-
-import SectionTab from '../components/SectionTab'
+import SlidingTabs from '../components/SlidingTabs'
 
 
 
@@ -45,11 +44,17 @@ function Home() {
             </div>
             <div className='Main-Option'>
               <div className='Main'>
-              <h2>Gần đây</h2>
-                  <SectionTab>
-                    
-                  </SectionTab>
-               
+                <h2 className='section-heading'>Gần đây</h2>
+                <SlidingTabs tabs={['Âm nhạc', 'Danh sách', 'Video', 'Podcast' ]} />               
+                <div className='display-recent'>
+
+                </div>
+                
+                <h2 className='section-heading'>Gợi ý</h2>
+                <SlidingTabs tabs={['Âm nhạc', 'Danh sách', 'Video', 'Podcast' ]} />               
+                <div className='display-recent'>
+                  
+                </div>
               </div>
               <div className='Option-TaskBar'></div>
             </div>
