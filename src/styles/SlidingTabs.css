@@ -1,0 +1,40 @@
+.sliding-tabs {
+    display: flex;
+    position: relative;
+    background-color: #102522;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .tab-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8a9a98;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s;
+  }
+  
+  .tab-item.active {
+    color: #fff;
+  }
+  
+  .tab-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .tab-indicator {
+    position: absolute;
+    height: 80%;
+    background-color: #1c3430;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    top: 10%;
+    z-index: 1;
+  }
+  
