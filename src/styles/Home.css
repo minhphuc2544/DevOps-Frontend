@@ -16,6 +16,7 @@ html, body {
     width: 100vw;
 }
 
+
 .SideBar {
     flex: 0 0 15vw;
     display: flex;
@@ -140,7 +141,8 @@ html, body {
     border-radius: 20px;
     background: transparent;
     border: 1px solid #00ECC3;
-    padding: 12px 24px;
+    padding: 13px 26px;
+    cursor: pointer;
 }
 
 .Content .btn-music:hover,
@@ -153,11 +155,12 @@ html, body {
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    width: 130px;
-    height: 30px;
-    padding: 11px 40px;
+    width: 12vw;
+    height: 44px;
+    padding: 13px 20px;
     background: rgba(89, 155, 146, 0.78);
     border: none;
+    cursor: pointer;
 }
 
 .Content .fill-btn:hover {
@@ -206,6 +209,28 @@ html, body {
     background: #062621;
     bottom: 0;
 }
+
+/* Open Modal Login styles */
+.Home-Page.blur {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+  }
+  
+/* Overlay fullscreen để chứa modal và làm nền mờ đen */
+.overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
 
 
 

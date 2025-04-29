@@ -1,24 +1,10 @@
-import { Children, StrictMode } from 'react'
-import './index.css'
-
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import Login from './pages/auth/Login'
-import Home from './pages/Home';
+import React from 'react';
+import { createRoot } from 'react-dom/client'; // Import createRoot
+import { BrowserRouter } from 'react-router-dom';
+import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-
-          {/* /đường dẫn đến trang login */} 
-          <Route path="/login" element={<Login />} />
-
-          {/* /đường dẫn đến trang khác  */}
-          
-        </Routes>
-      </BrowserRouter>
-  </StrictMode>,
-)
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);

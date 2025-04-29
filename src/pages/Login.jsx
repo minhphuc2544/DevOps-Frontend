@@ -1,10 +1,9 @@
 // src/pages/Login.jsx
-import './Login.css'
-import { Link } from 'react-router-dom'
+import '../styles/Login.css'
 import { useState } from 'react'
-import EyeToggle from '../../components/EyeToggle';
+import EyeToggle from '../components/EyeToggle';
 
-function Login() {
+export default function Login({ onClose, onForgotPassword, onSignup }) {
 
     const [ password, setPassword ] = useState('');
     return (
@@ -12,7 +11,9 @@ function Login() {
             <div className="login-container">
                 <h2>ĐĂNG NHẬP</h2>
                 <h5>Đăng nhập để tiếp tục truy cập vào tài khoản của bạn</h5>
-                <span className='login-Closed-icon'></span>
+                <span className='login-Closed-icon' onClick={onClose}>
+                    
+                </span>
                 <div className='input-group'>
                     <p>Email hoặc tên người dùng*</p>
                     <input 
@@ -45,22 +46,20 @@ function Login() {
                         </label>
                     </div>
 
-                    <Link to="/" className='form-forgot-password'>Quên mật khẩu?</Link>      
+                    <button className='form-forgot-password' onClick={onForgotPassword}>Quên mật khẩu?</button>      
                 </div>
                 
                 <div className='login-group'>
-                    <Link to="/" className='other-login'></Link>
-                    <button>Đăng nhập</button>
+                    <button className='other-login'></button>
+                    <button className='btn-login'>Đăng nhập</button>
                 </div>
             </div>
             <div className='signup-prompt'>
                 <p>Bạn chưa có tài khoản?
-                     <Link to="/" className='signup-link'> Đăng kí </Link>
+                     <button className='signup-link' onClick={onSignup}> Đăng kí </button>
                      ngay
                 </p>
             </div>
         </div>
     )   
 }
-
-export default Login

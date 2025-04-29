@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
-import './styles/App.css'
-import { Routes, Route, useLocation } from 'react-router-dom';
-
-function App() {
-  
-  return (<></>
+export default function App() {
+  const baseURL = import.meta.env.VITE_BASE_URL || '/';
+  return (
+    <Routes>
+      <Route path={`${baseURL}*`} element={<Navigate to={baseURL} />} />
+      <Route path={`${baseURL}/`} element={<Home />} />
+    </Routes>
   )
 }
-
-export default App
