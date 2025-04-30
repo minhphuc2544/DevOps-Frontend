@@ -1,0 +1,239 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: none;  
+}
+
+.margin-left-40px {
+    margin-left: 40px !important;
+}
+
+.Home-Page {   
+    position: relative;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+.SideBar {
+    flex: 0 0 15vw;
+    display: flex;
+    flex-direction: column;
+    background: #1C3430;
+}
+
+.Sidebar-Header {
+    flex: 0 0 52px;
+    background: #1C3430;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.Menu-TaskBar {
+    flex: 1;    
+    overflow: auto;
+    background-color: #1C3430;
+}
+
+.Content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.Content .Lookup-TaskBar {
+    flex: 0 0 10vh;
+    background: #0D1918;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    height: 56px;
+    gap: 2rem;
+}
+
+.Content .Lookup-TaskBar .icon-btn {
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    padding: 8px;
+    background-color: #102522;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.Content .Lookup-TaskBar .arrow-left,
+.Content .Lookup-TaskBar .arrow-right {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+
+.Content .Lookup-TaskBar .arrow-left {
+    background: url('../assets/icons/arrow-left.svg') no-repeat center center;
+    margin-right: 5px;
+}
+
+.Content .Lookup-TaskBar .arrow-right {
+    background: url('../assets/icons/arrow-right.svg') no-repeat center center;
+    margin-left: 5px;
+}
+
+.Content .Lookup-TaskBar .icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.Content .search-box {
+    flex: 1;
+    max-width: 600px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 9px 1rem 6px;
+    background-color: rgba(12, 35, 32, 0.78);
+    border-radius: 20px;
+}
+
+
+.Content .Lookup-TaskBar .icon-search {
+    background: url('../assets/icons/search-icon.svg') no-repeat center center;
+    width: 35px;
+    height: 35px;
+    margin-left: 0.5rem;
+}
+
+.Content .search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 22px;
+    outline: none;
+    padding-left: 16px;
+    transition: opacity 0.3s ease, width 0.3s ease, padding 0.3s ease;
+    width: 100%;
+    opacity: 1;
+    padding-left: 4px;
+}
+
+.Content .btn-music {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 35, 32, 0.78);
+    border: none;
+    border-radius: 20px;
+    padding: 14px 24px;
+}
+
+.Content .outline-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background: transparent;
+    border: 1px solid #00ECC3;
+    padding: 13px 26px;
+    cursor: pointer;
+}
+
+.Content .btn-music:hover,
+.Content .outline-btn:hover  {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.Content .fill-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 12vw;
+    height: 44px;
+    padding: 13px 20px;
+    background: rgba(89, 155, 146, 0.78);
+    border: none;
+    cursor: pointer;
+}
+
+.Content .fill-btn:hover {
+    background-color: #16423C;
+}
+
+.Content .link-text {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.Content .link-tex:hover {
+    color: #16423C;
+}
+
+.Main-Option {
+    flex: 1;
+    display: flex;
+}
+
+.Main {
+    flex: 1;
+    background: #0D1918;
+    color: #fff;
+    padding: 0 2rem;
+}
+
+.Main .display-recent {
+    width: 100%;
+    height: 250px;
+}
+
+
+.Option-TaskBar {
+    flex: 0 0 15vw;       
+    background: #0D1918;
+    color: #fff;
+    padding: 1rem;
+}
+
+.Music-Footer {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    background: #062621;
+    bottom: 0;
+}
+
+/* Open Modal Login styles */
+.Home-Page.blur {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+  }
+  
+/* Overlay fullscreen để chứa modal và làm nền mờ đen */
+.overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+
+
+
+
+
+
