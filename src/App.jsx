@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-
 export default function App() {
   const baseURL = import.meta.env.VITE_BASE_URL || '/';
   return (
@@ -10,3 +9,4 @@ export default function App() {
     </Routes>
   )
 }
+
