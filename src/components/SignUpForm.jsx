@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react"
 import "../styles/SignUp.css"
 
-export default function SignUpForm() {
+export default function SignUpForm({ onClose, onLogin }) {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     fullName: "",
@@ -37,7 +37,7 @@ export default function SignUpForm() {
           <Link to="/privacy" className="signup-link">điều kiện</Link>{" "}
           của chúng tôi trên trang web
         </h5>
-
+        <span className='sigup-Closed-icon' onClick={onClose}></span>
         <form onSubmit={handleSubmit} className="input-group">
           <p>Họ tên</p>
           <input
@@ -95,7 +95,7 @@ export default function SignUpForm() {
 
           <div className="login-group">
             <a href="#" className="other-login"></a>
-            <button type="submit" disabled={!formData.agreeToTerms}>
+            <button className="btn-submit" type="submit" disabled={!formData.agreeToTerms}>
               Đăng ký
             </button>
           </div>
@@ -104,7 +104,7 @@ export default function SignUpForm() {
         <div className="login-prompt">
           <p>
             Bạn đã có tài khoản?{" "}
-            <Link to="/login" className="login-link">Đăng nhập</Link>
+            <button className="login-link" onClick={onLogin}>Đăng nhập</button>
           </p>
         </div>
       </div>

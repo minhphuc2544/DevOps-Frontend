@@ -1,17 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import SignUpPage from "./pages/SignUpPage.jsx"
-import SettingPage from "./pages/SettingPage.jsx"
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Menu from "./Menu";
 
-function App() {
+export default function App() {
+  const baseURL = import.meta.env.VITE_BASE_URL || '/';
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SettingPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/setting" element={<SettingPage />} />
-      </Routes>
-    </Router>
+    <div className="app-container">
+       <Menu />
+    <Routes>
+      <Route path={`${baseURL}*`} element={<Navigate to={baseURL} />} />
+      <Route path={`${baseURL}/`} element={<Home />} />
+    </Routes>
+    </div>
   )
 }
 
-export default App
