@@ -29,13 +29,6 @@ export default function Home() {
     <>
       <div 
       className={`Home-Page ${(isLoginOpen || isSignupOpen || isForgotPasswordOpen) ? "blur" : ""}`}>
-        <div className='SideBar'>
-          <div className='Sidebar-Header'>
-            <h2>My app</h2>
-          </div>
-          <div className='Menu-TaskBar'>
-          </div>
-        </div> 
         <div className='Content'>
           <div className='Lookup-TaskBar'>
             <button className='icon-btn margin-left-40px'>
