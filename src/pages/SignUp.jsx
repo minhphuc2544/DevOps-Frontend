@@ -2,7 +2,7 @@ import '../styles/SignUp.css'
 import SignUpForm from "../components/SignUpForm.jsx"
 import { useState } from "react";
 
-export default function SignUpPage({ onClose, onLogin}) {
+export default function SignUp({ onClose, onLogin}) {
 
   return (
     <div className="min-h-screen bg-[#121212] text-white">

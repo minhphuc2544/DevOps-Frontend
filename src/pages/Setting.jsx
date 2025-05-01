@@ -1,6 +1,6 @@
 import "../styles/Setting.css"
 
-function SettingsPage() {
+function Setting() {
   return (
     <div className="app-container">
       {/* Sidebar */}

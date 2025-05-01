@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SlidingTabs from '../components/SlidingTabs'
 import Login from './Login'
-import Signup from './SignUpPage'
-import ForgotPassword from './forgot-password'
+import Signup from './SignUp'
+import ForgotPassword from './Forgot-password'
 
 export default function Home() {
 
