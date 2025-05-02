@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import "../styles/ForgotPassword.css"
 
 export default function ForgotPassword({ onClose}) {
   const [email, setEmail] = useState("")

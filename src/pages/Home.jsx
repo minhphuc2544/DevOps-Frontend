@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import SlidingTabs from '../components/SlidingTabs'
 import Login from './Login'
 import Signup from './SignUp'
-import ForgotPassword from './Forgot-password'
+import ForgotPassword from './ForgotPassword'
 
 export default function Home() {
 

@@ -1,6 +1,6 @@
 import "../styles/Setting.css"
 
-function Setting() {
+export default function SettingsPage () {
   return (
     <div className="app-container">
       {/* Sidebar */}
@@ -199,4 +199,4 @@ function Setting() {
   )
 }
 
-export default SettingsPage
+
