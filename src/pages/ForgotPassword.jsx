@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import "../styles/ForgotPassword.css"
 
-export default function ForgotPassword({ onClose}) {
+export default function ForgotPassword({ onClose, onEmailSubmitted }) {
   const [email, setEmail] = useState("")
 
   const handleSubmit = (e) => {
@@ -10,11 +9,14 @@ export default function ForgotPassword({ onClose}) {
     // Handle email submission logic here
     console.log("Sending reset link to:", email)
     // You would typically make an API call here
+
+    onEmailSubmitted(email);  
   }
 
   return (
     <div style={styles.container}>
       <div style={styles.formContainer}>
+      <button onClick={onClose} style={styles.closeButton}>×</button>
         <h2 style={styles.title}>Quên mật khẩu</h2>
         <p style={styles.description}>
           Nhập địa chỉ email của bạn bên dưới và chúng tôi sẽ gửi email cho bạn một liên kết để đặt lại mật khẩu của
@@ -87,6 +89,16 @@ const styles = {
   },
   form: {
     width: "100%",
+  },
+  closeButton: {
+    position: "absolute",
+    top: "250px",
+    right: "560px",
+    background: "transparent",
+    border: "none",
+    fontSize: "44px",
+    color: "white",
+    cursor: "pointer",
   },
   inputGroup: {
     marginBottom: "20px",

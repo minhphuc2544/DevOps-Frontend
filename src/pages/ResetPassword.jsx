@@ -22,6 +22,7 @@ export default function ResetPassword() {
   return (
     <div style={styles.container}>
       <div style={styles.formContainer}>
+      <button onClick={onClose} style={styles.closeButton}>×</button>
         <h2 style={styles.title}>Đặt lại mật khẩu</h2>
         <p style={styles.description}>
           Nhập mật khẩu mới của bạn một cách cẩn thận. Mật khẩu phải dài ít nhất 8 ký tự.
@@ -117,6 +118,16 @@ const styles = {
   },
   form: {
     width: "100%",
+  },
+  closeButton: {
+    position: "absolute",
+    top: "250px",
+    right: "560px",
+    background: "transparent",
+    border: "none",
+    fontSize: "44px",
+    color: "white",
+    cursor: "pointer",
   },
   inputGroup: {
     marginBottom: "15px",

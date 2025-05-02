@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import SlidingTabs from '../components/SlidingTabs'
 import Login from './Login'
 import Signup from './SignUp'
+import ResetPassword from './ResetPassword'
 import ForgotPassword from './ForgotPassword'
 
 export default function Home() {
@@ -22,6 +23,13 @@ export default function Home() {
   const [isForgotPasswordOpen, setForgotPasswordOpen] = useState(false);
   const openForgotPassword = () => { setForgotPasswordOpen(true); return true; };
   const closeForgotPassword = () => setForgotPasswordOpen(false);
+
+  const [isResetPasswordOpen, setResetPasswordOpen] = useState(false);
+  const openResetPassword = () => { setResetPasswordOpen(true); return true; };
+  const closeResetPassword = () => setResetPasswordOpen(false);
+
+  const [email, setEmail] = useState("");
+
 
 
 
@@ -101,10 +109,21 @@ export default function Home() {
         <div className="overlay">
           <ForgotPassword 
           onClose={closeForgotPassword} 
-          
+          onEmailSubmitted={(email) => {
+            setEmail(email);
+            closeForgotPassword();      
+            openResetPassword();       
+          }}
           />
         </div>
+      )}
 
+      {isResetPasswordOpen && (
+        <div className="overlay">
+          <ResetPassword
+          email={email}
+          onClose={closeResetPassword} />
+        </div>
       )}
     </>
   )
