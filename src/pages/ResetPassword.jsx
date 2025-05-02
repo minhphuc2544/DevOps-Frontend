@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-export default function ResetPassword() {
+export default function ResetPassword({email, onClose}) {
   const [code, setCode] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [repeatPassword, setRepeatPassword] = useState("")
