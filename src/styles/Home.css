@@ -203,13 +203,7 @@ html, body {
     padding: 1rem;
 }
 
-.Music-Footer {
-    position: absolute;
-    width: 100%;
-    height: 80px;
-    background: #062621;
-    bottom: 0;
-}
+
 
 /* Open Modal Login styles */
 .Home-Page.blur {

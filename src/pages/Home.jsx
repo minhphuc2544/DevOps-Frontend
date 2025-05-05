@@ -8,6 +8,8 @@ import Login from './Login'
 import Signup from './SignUp'
 import ResetPassword from './ResetPassword'
 import ForgotPassword from './ForgotPassword'
+import MusicPlayer from "../components/MusicPlayer"
+import MusicSidebar from "../components/MusicSidebar"
 
 export default function Home() {
 
@@ -77,12 +79,16 @@ export default function Home() {
                 
               </div>
             </div>
-            <div className='Option-TaskBar'></div>
+            <div className="Option-TaskBar">
+              <MusicSidebar />
+            </div>
           </div>
         </div>
 
         {/* This is tab music */}
-        <div className='Music-Footer'></div>
+        <div className="Music-Footer">
+          <MusicPlayer />
+        </div>
 
       </div>
 
