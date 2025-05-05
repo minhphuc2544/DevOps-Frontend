@@ -1,202 +1,232 @@
 import "../styles/Setting.css"
+import { useState, useRef } from "react"
+import Header from "./Header"
+import ImageUploadModal from "./ImageUpload"
+import PasswordChange from "./PasswordChange"
+import ProfileInfo from "./ProfileInfo"
+import RightSidebar from "./RightSideBar"
+import Sidebar from "./SideBar"
+import MusicPlayer from "./MusicPlayer"
 
-export default function SettingsPage () {
+export default function SettingsPage() {
+  const [activeView, setActiveView] = useState("info")
+  const [isEditing, setIsEditing] = useState(false)
+  const [userInfo, setUserInfo] = useState({
+    name: "Tên của bạn",
+    email: "Email@gmail.com",
+    phone: "0969 999 999",
+    createdAt: "30/03/2025",
+  })
+  // Add state for profile image
+  const [profileImage, setProfileImage] = useState(null)
+  const [showImageModal, setShowImageModal] = useState(false)
+  const [imageSource, setImageSource] = useState("upload") // "upload" or "url"
+  const [imageUrl, setImageUrl] = useState("")
+  const [imageError, setImageError] = useState("")
+
+  // Reference for file input
+  const fileInputRef = useRef(null)
+  
+  // Add validation errors state
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    createdAt: "",
+  })
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  })
+  // Add state for password visibility
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false)
+  const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  // Handle image upload
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith("image/")) {
+        setImageError("Vui lòng chọn một tệp hình ảnh hợp lệ")
+        return
+      }
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setImageError("Kích thước hình ảnh không được vượt quá 5MB")
+        return
+      }
+      setImageError("")
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        setProfileImage(event.target.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+  // Handle image URL input
+  const handleImageUrl = () => {
+    if (!imageUrl) {
+      setImageError("Vui lòng nhập URL hình ảnh")
+      return
+    }
+    // Basic URL validation
+    if (!imageUrl.match(/^(http|https):\/\/[^ "]+$/)) {
+      setImageError("URL không hợp lệ")
+      return
+    }
+    // Check if URL is an image
+    const img = new Image()
+    img.onload = () => {
+      setProfileImage(imageUrl)
+      setImageError("")
+    }
+    img.onerror = () => {
+      setImageError("URL không phải là hình ảnh hợp lệ")
+    }
+    img.src = imageUrl
+  }
+
+  // Save image and close modal
+  const saveImage = () => {
+    setShowImageModal(false)
+    // Here you would typically send the image to your backend
+  }
+  // Validation functions
+  const validateName = (name) => {
+    if (!name.trim()) return "Họ và tên không được để trống"
+    if (name.trim().length < 2) return "Họ và tên phải có ít nhất 2 ký tự"
+    return ""
+  }
+  const validateEmail = (email) => {
+    if (!email.trim()) return "Email không được để trống"
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) return "Email không hợp lệ"
+    return ""
+  }
+  const validatePhone = (phone) => {
+    if (!phone.trim()) return "Số điện thoại không được để trống"
+    // Remove spaces and other characters for validation
+    const phoneDigits = phone.replace(/\D/g, "")
+    if (phoneDigits.length !== 10) return "Số điện thoại phải có 10 chữ số"
+    return ""
+  }
+  const validateDate = (date) => {
+    if (!date.trim()) return "Ngày tạo không được để trống"
+    // Simple date validation (DD/MM/YYYY format)
+    const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/
+    if (!dateRegex.test(date)) return "Ngày tạo phải có định dạng DD/MM/YYYY"
+    return ""
+  }
+  // Handle input change with validation
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setUserInfo((prev) => ({ ...prev, [name]: value }))
+    // Validate on change
+    let errorMessage = ""
+    switch (name) {
+      case "name":
+        errorMessage = validateName(value)
+        break
+      case "email":
+        errorMessage = validateEmail(value)
+        break
+      case "phone":
+        errorMessage = validatePhone(value)
+        break
+      case "createdAt":
+        errorMessage = validateDate(value)
+        break
+      default:
+        break
+    }
+    setErrors((prev) => ({ ...prev, [name]: errorMessage }))
+  }
+  // Validate all fields before saving
+  const validateAllFields = () => {
+    const nameError = validateName(userInfo.name)
+    const emailError = validateEmail(userInfo.email)
+    const phoneError = validatePhone(userInfo.phone)
+    const dateError = validateDate(userInfo.createdAt)
+    setErrors({
+      name: nameError,
+      email: emailError,
+      phone: phoneError,
+      createdAt: dateError,
+    })
+    // Return true if no errors
+    return !nameError && !emailError && !phoneError && !dateError
+  }
+  // Handle save button click
+  const handleSave = () => {
+    if (validateAllFields()) {
+      // All validations passed, save the data
+      setIsEditing(false)
+      // Here you would typically send the data to your backend
+      alert("Thông tin đã được lưu thành công!")
+    } else {
+      // Validation failed, show alert
+      alert("Vui lòng kiểm tra lại thông tin!")
+    }
+  }
   return (
     <div className="app-container">
       {/* Sidebar */}
-      <div className="sidebar">
-        <div className="logo-container">
-          <div className="logo-image">AMS</div>
-          <div className="logo-text">amazon music service</div>
-        </div>
-
-        <nav className="sidebar-nav">
-          <div className="nav-item">
-            <span className="nav-icon home-icon"></span>
-            <span className="nav-text">Nhà</span>
-          </div>
-          <div className="nav-item">
-            <span className="nav-icon playlist-icon"></span>
-            <span className="nav-text">Tuyển tập</span>
-          </div>
-          <div className="nav-item">
-            <span className="nav-icon album-icon"></span>
-            <span className="nav-text">Album</span>
-          </div>
-
-          <div className="nav-section">
-            <div className="section-title">Khám phá</div>
-            <div className="nav-item">
-              <span className="nav-icon-circle"></span>
-              <span className="nav-text">Khám phá</span>
-            </div>
-          </div>
-
-          <div className="nav-section">
-            <div className="section-title">Bộ sưu tập</div>
-            <div className="nav-item">
-              <span className="nav-icon favorite-icon"></span>
-              <span className="nav-text">Nhạc bạn thích</span>
-            </div>
-          </div>
-
-          <div className="nav-section">
-            <div className="section-title">Chung</div>
-            <div className="nav-item active">
-              <span className="nav-icon settings-icon"></span>
-              <span className="nav-text">Cài đặt</span>
-            </div>
-            <div className="nav-item">
-              <span className="nav-icon help-icon"></span>
-              <span className="nav-text">Hỗ trợ</span>
-            </div>
-            <div className="nav-item">
-              <span className="nav-icon logout-icon"></span>
-              <span className="nav-text">Thoát</span>
-            </div>
-          </div>
-        </nav>
-      </div>
-
+      <Sidebar />
       {/* Main Content */}
       <div className="main-content">
         {/* Header */}
-        <header className="header">
-          <div className="header-left">
-            <button className="nav-arrow prev-arrow"></button>
-            <button className="nav-arrow next-arrow"></button>
-            <div className="search-container">
-              <span className="search-icon"></span>
-              <input type="text" placeholder="Tìm kiếm" className="search-input" />
-            </div>
-          </div>
-
-          <div className="header-right">
-            <button className="header-button active">Music</button>
-            <button className="header-button">Video</button>
-            <button className="notification-button"></button>
-            <div className="user-avatar"></div>
-          </div>
-        </header>
-
+        <Header />
         {/* Settings Content */}
         <div className="settings-content">
           <h1 className="settings-title">Cài đặt tài khoản</h1>
-
-          <div className="profile-container">
-            <div className="profile-info">
-              <div className="profile-image-section">
-                <div className="profile-image"></div>
-                <button className="edit-photo-button">Sửa ảnh</button>
-              </div>
-
-              <div className="profile-details">
-                <div className="profile-field">
-                  <div className="field-label">Họ và tên:</div>
-                  <div className="field-value">Tên của bạn</div>
-                </div>
-
-                <div className="profile-field">
-                  <div className="field-label">Email:</div>
-                  <div className="field-value">Email@gmail.com</div>
-                </div>
-
-                <div className="profile-field">
-                  <div className="field-label">Số điện thoại:</div>
-                  <div className="field-value">0969 999 999</div>
-                </div>
-
-                <div className="profile-field">
-                  <div className="field-label">Ngày tạo:</div>
-                  <div className="field-value">30/03/2025</div>
-                </div>
-
-                <div className="profile-actions">
-                  <button className="update-button">Cập nhật thông tin</button>
-                  <button className="password-button">Đổi mật khẩu</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          {activeView === "info" ? (
+            <ProfileInfo
+              isEditing={isEditing}
+              userInfo={userInfo}
+              errors={errors}
+              profileImage={profileImage}
+              handleInputChange={handleInputChange}
+              handleSave={handleSave}
+              setIsEditing={setIsEditing}
+              setShowImageModal={setShowImageModal}
+            />
+          ) : (
+            <PasswordChange
+              passwordData={passwordData}
+              setPasswordData={setPasswordData}
+              showCurrentPassword={showCurrentPassword}
+              showNewPassword={showNewPassword}
+              showConfirmPassword={showConfirmPassword}
+              setShowCurrentPassword={setShowCurrentPassword}
+              setShowNewPassword={setShowNewPassword}
+              setShowConfirmPassword={setShowConfirmPassword}
+              setActiveView={setActiveView}
+            />
+          )}
         </div>
       </div>
-
       {/* Right Sidebar */}
-      <div className="right-sidebar">
-        <div className="sidebar-section">
-          <h2 className="sidebar-title">Bảng điều khiển</h2>
-          <div className="sidebar-menu">
-            <div className="sidebar-menu-item active">
-              <span className="menu-icon account-icon"></span>
-              <span className="menu-text">Thông tin tài khoản</span>
-            </div>
-            <div className="sidebar-menu-item">
-              <span className="menu-icon password-icon"></span>
-              <span className="menu-text">Mật khẩu</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="sidebar-section">
-          <h2 className="sidebar-title">Bảng điều khiển</h2>
-          <div className="sidebar-menu">
-            <div className="sidebar-menu-item">
-              <span className="menu-icon interface-icon"></span>
-              <span className="menu-text">Giới thiệu</span>
-            </div>
-            <div className="sidebar-menu-item">
-              <span className="menu-icon terms-icon"></span>
-              <span className="menu-text">Thỏa thuận sử dụng</span>
-            </div>
-            <div className="sidebar-menu-item">
-              <span className="menu-icon privacy-icon"></span>
-              <span className="menu-text">Chính sách bảo mật</span>
-            </div>
-            <div className="sidebar-menu-item">
-              <span className="menu-icon copyright-icon"></span>
-              <span className="menu-text">Báo cáo vi phạm bản quyền</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <RightSidebar activeView={activeView} setActiveView={setActiveView} />
       {/* Music Player */}
-      <div className="music-player">
-        <div className="player-left">
-          <div className="song-thumbnail"></div>
-          <div className="song-info">
-            <div className="song-title">Country song</div>
-            <div className="song-artist">Artist</div>
-          </div>
-          <button className="like-button"></button>
-        </div>
-
-        <div className="player-center">
-          <div className="player-controls">
-            <button className="control-button shuffle"></button>
-            <button className="control-button previous"></button>
-            <button className="control-button play"></button>
-            <button className="control-button next"></button>
-            <button className="control-button repeat"></button>
-          </div>
-          <div className="progress-container">
-            <span className="current-time">2:04</span>
-            <div className="progress-bar">
-              <div className="progress-fill"></div>
-            </div>
-            <span className="total-time">5:15</span>
-          </div>
-        </div>
-
-        <div className="player-right">
-          <button className="volume-button"></button>
-          <div className="volume-slider">
-            <div className="volume-fill"></div>
-          </div>
-        </div>
-      </div>
+      <MusicPlayer />
+      {/* Image Upload Modal */}
+      <ImageUploadModal
+        showImageModal={showImageModal}
+        setShowImageModal={setShowImageModal}
+        imageSource={imageSource}
+        setImageSource={setImageSource}
+        imageUrl={imageUrl}
+        setImageUrl={setImageUrl}
+        imageError={imageError}
+        profileImage={profileImage}
+        fileInputRef={fileInputRef}
+        handleImageUpload={handleImageUpload}
+        handleImageUrl={handleImageUrl}
+        saveImage={saveImage}
+      />   
     </div>
   )
 }
-
-
