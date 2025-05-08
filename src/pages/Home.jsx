@@ -8,6 +8,7 @@ import Login from './Login'
 import Signup from './SignUp'
 import ResetPassword from './ResetPassword'
 import ForgotPassword from './ForgotPassword'
+import MusicBox from '../components/MusicBox'
 
 export default function Home() {
 
@@ -68,13 +69,22 @@ export default function Home() {
               <h2 className='section-heading'>Gần đây</h2>
               <SlidingTabs tabs={['Âm nhạc', 'Danh sách', 'Video', 'Podcast' ]} />               
               <div className='display-recent'>
-
+              {/* gọi thanh phần âm nhạc */}
+              <MusicBox title="Cinnamon girl" artist="Lana Delray" />
+              <MusicBox title="Mijesty" artist="Eminem" />
+              <MusicBox title="Country song" artist="Seether" />
+              <MusicBox title="Mijesty" artist="Eminem" />
+              <MusicBox title="Country song" artist="Seether" />
               </div>
               
               <h2 className='section-heading'>Gợi ý</h2>
               <SlidingTabs tabs={['Âm nhạc', 'Danh sách', 'Video', 'Podcast' ]} />               
               <div className='display-recent'>
-                
+              <MusicBox title="Cinnamon girl" artist="Lana Delray" />
+              <MusicBox title="Mijesty" artist="Eminem" />
+              <MusicBox title="Country song" artist="Seether" />
+              <MusicBox title="Mijesty" artist="Eminem" />
+              <MusicBox title="Country song" artist="Seether" />
               </div>
             </div>
             <div className='Option-TaskBar'></div>
