@@ -1,4 +1,4 @@
-export default function MusicPlayer() {
+export default function MusicPlayer2() {
     return (
       <div className="music-player">
         <div className="player-left">

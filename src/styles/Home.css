@@ -14,7 +14,6 @@ html, body {
     display: flex;
     height: 100vh;
     width: auto;
-    width: auto;
 }
 
 
@@ -179,6 +178,7 @@ html, body {
 }
 
 .Main-Option {
+    height: 100vmax;
     flex: 1;
     display: flex;
 }
@@ -188,6 +188,8 @@ html, body {
     background: #0D1918;
     color: #fff;
     padding: 0 2rem;
+    min-width: 0;
+    overflow: hidden;
 }
 
 /* Css cho music box */
@@ -260,6 +262,8 @@ html, body {
     background: #0D1918;
     color: #fff;
     padding: 1rem;
+    flex-shrink: 0;
+    height: 65vmax;
 }
 
 

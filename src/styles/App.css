@@ -13,13 +13,13 @@
   }
   
   .app-container {
-    /*display: flex;
+    display: flex;
     height: 100vh;
     max-width: 100vmax;
-    overflow: hidden;*/
-    display: grid;
+    overflow: hidden;
+    /* display: grid;
     grid-template-columns: 185px 1fr 220px;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr auto; */
     height: 100vh;
     width: 100vw;
     overflow: hidden;

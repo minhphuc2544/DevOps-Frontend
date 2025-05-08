@@ -5,12 +5,12 @@
     right: 0;
     background-color: #121212;
     border-top: 1px solid #333;
-    height: 80px;
+    height: 110px;
     display: flex;
     align-items: center;
     padding: 0 16px;
     color: white;
-    z-index: 100;
+    z-index: 10;
   }
   
   .music-player-container {
@@ -25,13 +25,15 @@
   .song-info {
     display: flex;
     align-items: center;
-    width: 25%;
+    justify-content: flex-start;
+    width: 30%;
   }
   
   .song-thumbnail {
     height: 48px;
     width: 48px;
-    margin-right: 12px;
+    margin-right: 10px;
+    margin-left: 10px;
   }
   
   .song-thumbnail img {
@@ -44,6 +46,7 @@
   .song-title {
     font-size: 14px;
     font-weight: 500;
+    margin-left: 10px;
   }
   
   .favorite-button {
@@ -56,6 +59,9 @@
     align-items: center;
     justify-content: center;
     padding: 0;
+    margin-left: auto;
+    margin-bottom: 15px;
+    margin-right: 10px;
   }
   
   .favorite-button svg {
@@ -179,7 +185,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 25%;
+    width: 20%;
   }
   
   .volume-button {

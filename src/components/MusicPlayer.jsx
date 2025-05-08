@@ -88,7 +88,7 @@ export default function MusicPlayer() {
         {/* Song info */}
         <div className="song-info">
           <div className="song-thumbnail">
-            <img src="/placeholder.jpg" alt="Song thumbnail" />
+            <img src="https://static.vecteezy.com/system/resources/previews/002/249/673/original/music-note-icon-song-melody-tune-flat-symbol-free-vector.jpg" alt="Song thumbnail" />
           </div>
           <div className="song-details">
             <p className="song-title">Country song</p>
