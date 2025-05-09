@@ -2,6 +2,7 @@ import { useState } from "react"
 import InfoModal from "./InfoModal"
 import Introduction from "./Introduction" 
 import Terms from "./TermOfUse"
+import PrivacyPolicyContent from "./PrivacyPolicy"
 
 export default function RightSidebar({ activeView, setActiveView }) {
   const [modalState, setModalState] = useState({
@@ -57,7 +58,7 @@ export default function RightSidebar({ activeView, setActiveView }) {
             <span className="menu-icon terms-icon"></span>
             <span className="menu-text">Thỏa thuận sử dụng</span>
           </div>
-          <div className="sidebar-menu-item">
+          <div className="sidebar-menu-item" onClick={() => openModal("privacy")}>
             <span className="menu-icon privacy-icon"></span>
             <span className="menu-text">Chính sách bảo mật</span>
           </div>
@@ -79,6 +80,12 @@ export default function RightSidebar({ activeView, setActiveView }) {
         onClose={() => closeModal("terms")}
         title="Thỏa thuận sử dụng"
         content={<Terms />}
+      />
+      <InfoModal
+        isOpen={modalState.privacy}
+        onClose={() => closeModal("privacy")}
+        title="Chính sách bảo mật"
+        content={<PrivacyPolicyContent />}
       />
     </div>
   )
