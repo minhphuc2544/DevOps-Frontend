@@ -3,6 +3,7 @@ import InfoModal from "./InfoModal"
 import Introduction from "./Introduction" 
 import Terms from "./TermOfUse"
 import PrivacyPolicyContent from "./PrivacyPolicy"
+import CopyrightReport from "./CopyrightReport"
 
 export default function RightSidebar({ activeView, setActiveView }) {
   const [modalState, setModalState] = useState({
@@ -62,7 +63,7 @@ export default function RightSidebar({ activeView, setActiveView }) {
             <span className="menu-icon privacy-icon"></span>
             <span className="menu-text">Chính sách bảo mật</span>
           </div>
-          <div className="sidebar-menu-item">
+          <div className="sidebar-menu-item" onClick={() => openModal("copyright")}>
             <span className="menu-icon copyright-icon"></span>
             <span className="menu-text">Báo cáo vi phạm bản quyền</span>
           </div>
@@ -87,6 +88,7 @@ export default function RightSidebar({ activeView, setActiveView }) {
         title="Chính sách bảo mật"
         content={<PrivacyPolicyContent />}
       />
+      <CopyrightReport isOpen={modalState.copyright} onClose={() => closeModal("copyright")} />
     </div>
   )
 }
