@@ -1,6 +1,7 @@
 import { useState } from "react"
 import InfoModal from "./InfoModal"
 import Introduction from "./Introduction" 
+import Terms from "./TermOfUse"
 
 export default function RightSidebar({ activeView, setActiveView }) {
   const [modalState, setModalState] = useState({
@@ -48,13 +49,11 @@ export default function RightSidebar({ activeView, setActiveView }) {
       <div className="sidebar-section">
         <h2 className="sidebar-title">Bảng điều khiển</h2>
         <div className="sidebar-menu">
-          <div className="sidebar-menu-item">
           <div className="sidebar-menu-item" onClick={() => openModal("introduction")}>
             <span className="menu-icon interface-icon"></span>
             <span className="menu-text">Giới thiệu</span>
           </div>
-          </div>
-          <div className="sidebar-menu-item">
+          <div className="sidebar-menu-item" onClick={() => openModal("terms")}>
             <span className="menu-icon terms-icon"></span>
             <span className="menu-text">Thỏa thuận sử dụng</span>
           </div>
@@ -74,6 +73,12 @@ export default function RightSidebar({ activeView, setActiveView }) {
         onClose={() => closeModal("introduction")}
         title="Giới thiệu"
         content={<Introduction />}
+      />
+      <InfoModal
+        isOpen={modalState.terms}
+        onClose={() => closeModal("terms")}
+        title="Thỏa thuận sử dụng"
+        content={<Terms />}
       />
     </div>
   )
