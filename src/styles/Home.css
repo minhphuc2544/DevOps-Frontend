@@ -178,18 +178,21 @@ html, body {
 }
 
 .Main-Option {
-    height: 100vmax;
+    /*height: 100vmax;
     flex: 1;
+    display: flex;*/
     display: flex;
+    height: calc(100vh - 80px); /* 80px là chiều cao player */
+    min-height: 0;
 }
 
 .Main {
     flex: 1;
+    min-width: 0;
     background: #0D1918;
     color: #fff;
     padding: 0 2rem;
-    min-width: 0;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 /* Css cho music box */
@@ -240,8 +243,6 @@ html, body {
     margin-bottom: 8px;
   }
 
-
-  
   .music-info {
     font-size: 14px;
   }
@@ -258,15 +259,15 @@ html, body {
 /*css cho Music Box*/
 
 .Option-TaskBar {
+    position: relative;
     flex: 0 0 15vw;       
     background: #0D1918;
     color: #fff;
-    padding: 1rem;
+    padding: 1rem 0;
     flex-shrink: 0;
-    height: 65vmax;
+    margin-right: 170px;
+    
 }
-
-
 
 /* Open Modal Login styles */
 .Home-Page.blur {
@@ -287,11 +288,3 @@ html, body {
     align-items: center;
     z-index: 1000;
 }
-
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 .music-sidebar {
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 100%;
     background-color: #121212;
     color: white;
     display: flex;
@@ -8,7 +8,9 @@
     overflow-y: auto;
     padding: 0 10px;
     padding-bottom: 100px;
-    position: relative;
+    /*position: relative; /* Thay đổi thành position: absolute hoặc fixed nếu cần */
+    /*flex-shrink: 0; /* Ngăn sidebar co lại khi không đủ không gian */
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .sidebar-section {
