@@ -5,8 +5,7 @@ import ImageUploadModal from "./ImageUpload"
 import PasswordChange from "./PasswordChange"
 import ProfileInfo from "./ProfileInfo"
 import RightSidebar from "./RightSideBar"
-import Sidebar from "./SideBar"
-import MusicPlayer from "./MusicPlayer"
+import MusicPlayer from "../components/MusicPlayer"
 
 export default function SettingsPage() {
   const [activeView, setActiveView] = useState("info")
@@ -172,14 +171,10 @@ export default function SettingsPage() {
     }
   }
   return (
-    <div className="app-container">
-      {/* Sidebar */}
-      <Sidebar />
-      {/* Main Content */}
+    <div className="settings-app-container">
+      
       <div className="main-content">
-        {/* Header */}
         <Header />
-        {/* Settings Content */}
         <div className="settings-content">
           <h1 className="settings-title">Cài đặt tài khoản</h1>
           {activeView === "info" ? (
@@ -208,11 +203,10 @@ export default function SettingsPage() {
           )}
         </div>
       </div>
-      {/* Right Sidebar */}
       <RightSidebar activeView={activeView} setActiveView={setActiveView} />
-      {/* Music Player */}
-      <MusicPlayer />
-      {/* Image Upload Modal */}
+      <div className="Music-Footer">
+          <MusicPlayer />
+      </div>
       <ImageUploadModal
         showImageModal={showImageModal}
         setShowImageModal={setShowImageModal}
