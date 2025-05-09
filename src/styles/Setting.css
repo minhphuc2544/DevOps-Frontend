@@ -682,3 +682,124 @@ cursor: not-allowed;
 .terms-icon        { background: url("../assets/icons/pdf-icon.svg") center/contain no-repeat; }
 .privacy-icon      { background: url("../assets/icons/privacy-icon.svg") center/contain no-repeat; }
 .copyright-icon    { background: url("../assets/icons/report-icon.svg") center/contain no-repeat; }
+
+/* Info Modal Styles */
+.info-content {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.info-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.info-content h3 {
+  font-size: 18px;
+  margin: 15px 0 10px;
+  color: #4dabf7;
+}
+
+.info-section {
+  margin-bottom: 20px;
+}
+
+.info-section p {
+  margin-bottom: 10px;
+}
+
+.info-section ul {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.info-section li {
+  margin-bottom: 5px;
+}
+
+.last-updated {
+  font-style: italic;
+  color: #999;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.feature-list {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+.feature-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-list li:last-child {
+  border-bottom: none;
+}
+
+.info-modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Copyright Report Form Styles */
+.copyright-modal {
+  max-width: 600px;
+}
+
+.copyright-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.form-input,
+.form-textarea {
+  padding: 10px;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.checkbox-group input {
+  margin-top: 3px;
+}
+
+.checkbox-group label {
+  flex: 1;
+  font-size: 13px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
