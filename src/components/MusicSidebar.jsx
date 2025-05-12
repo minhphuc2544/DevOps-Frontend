@@ -63,7 +63,7 @@ export default function MusicSidebar() {
           {rankingData.map((song) => (
             <div className="ranking-item" key={song.id}>
               <div className="ranking-number">{song.id}</div>
-              <div className="song-thumbnail">
+              <div className="song-thumbnail-sidebar">
                 <img src={song.image || "/placeholder.svg"} alt={song.title} />
               </div>
               <div className="song-info">
@@ -82,7 +82,7 @@ export default function MusicSidebar() {
         <div className="playlist-subsection">
           <h3 className="subsection-heading">Đang phát</h3>
           <div className="playlist-item currently-playing">
-            <div className="song-thumbnail">
+            <div className="song-thumbnail-sidebar">
               <img src={currentlyPlaying.image || "/placeholder.svg"} alt={currentlyPlaying.title} />
             </div>
             <div className="song-info">
@@ -98,7 +98,7 @@ export default function MusicSidebar() {
           <div className="playlist-items">
             {upNext.map((song) => (
               <div className="playlist-item" key={song.id}>
-                <div className="song-thumbnail">
+                <div className="song-thumbnail-sidebar">
                   <img src={song.image || "/placeholder.svg"} alt={song.title} />
                 </div>
                 <div className="song-info">
