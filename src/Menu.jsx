@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import Setting from "./pages/Setting";
 import "./styles/Menu.css"
 
 const HomeIcon = () => (
@@ -135,6 +134,7 @@ const LogoutIcon = () => (
   </svg>
 )
 
+
 const Menu = () => {
   const location = useLocation()
   const [activeItem, setActiveItem] = useState(location.pathname)
@@ -148,12 +148,13 @@ const Menu = () => {
     { divider: true, label: "Bộ sưu tập" },
     { path: "/favorites", label: "Nhạc bạn thích", icon: <FavoritesIcon /> },
     { divider: true, label: "Chung" },
-    { path: "/settings", label: "Cài đặt", icon: <SettingsIcon /> },
+    { path: "./setting", label: "Cài đặt", icon: <SettingsIcon /> },
     { path: "/support", label: "Hỗ trợ", icon: <SupportIcon /> },
     { path: "/logout", label: "Thoát", icon: <LogoutIcon /> },
   ]
 
   return (
+    <>
     <div className="menu-container h-full">
       <div className="menu-header">
         <div className="logo-container">
@@ -188,6 +189,7 @@ const Menu = () => {
         </ul>
       </nav>
     </div>
+    </>
   )
 }
 
