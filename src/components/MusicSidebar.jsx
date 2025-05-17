@@ -8,13 +8,13 @@ export default function MusicSidebar() {
 
   // Sample data for the ranking chart
   const rankingData = [
-    { id: 1, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
-    { id: 2, title: "Country song", artist: "Artist", duration: "5:13", image: "/placeholder.jpg" },
-    { id: 3, title: "Country song", artist: "Artist", duration: "5:12", image: "/placeholder.jpg" },
-    { id: 4, title: "Country song", artist: "Artist", duration: "5:15", image: "/placeholder.jpg" },
-    { id: 5, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
-    { id: 6, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
-    { id: 7, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
+    { id: 1, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song1.png" },
+    { id: 2, title: "Country song", artist: "Artist", duration: "5:13", image: "/images/song2.png" },
+    { id: 3, title: "Country song", artist: "Artist", duration: "5:12", image: "/images/song3.png" },
+    { id: 4, title: "Country song", artist: "Artist", duration: "5:15", image: "/images/song4.png" },
+    { id: 5, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song5.png" },
+    { id: 6, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song6.png" },
+    { id: 7, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song7.png" },
   ]
 
   // Sample data for the waiting list
@@ -22,15 +22,15 @@ export default function MusicSidebar() {
     title: "Country song",
     artist: "Artist",
     duration: "5:10",
-    image: "/placeholder.jpg",
+    image: "/images/song1.png",
   }
 
   const upNext = [
-    { id: 1, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
-    { id: 2, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
-    { id: 3, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
-    { id: 4, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
-    { id: 5, title: "Country song", artist: "Artist", duration: "5:10", image: "/placeholder.jpg" },
+    { id: 1, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song1.png" },
+    { id: 2, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song2.png" },
+    { id: 3, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song3.png" },
+    { id: 4, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song4.png" },
+    { id: 5, title: "Country song", artist: "Artist", duration: "5:10", image: "/images/song5.png" },
   ]
 
   return (
@@ -64,9 +64,13 @@ export default function MusicSidebar() {
             <div className="ranking-item" key={song.id}>
               <div className="ranking-number">{song.id}</div>
               <div className="song-thumbnail-sidebar">
-                <img src={song.image || "/placeholder.svg"} alt={song.title} />
+                <img src={song.image || "/images/song.svg"} alt={song.title} />
               </div>
-              <div className="song-info">
+              {/*<div className="song-info">
+                <div className="song-title">{song.title}</div>
+                <div className="song-artist">{song.artist}</div>
+              </div>*/}
+              <div className="sidebar-song-info">
                 <div className="song-title">{song.title}</div>
                 <div className="song-artist">{song.artist}</div>
               </div>
@@ -83,9 +87,14 @@ export default function MusicSidebar() {
           <h3 className="subsection-heading">Đang phát</h3>
           <div className="playlist-item currently-playing">
             <div className="song-thumbnail-sidebar">
-              <img src={currentlyPlaying.image || "/placeholder.svg"} alt={currentlyPlaying.title} />
+              <img src={currentlyPlaying.image || "/images/song.svg"} alt={currentlyPlaying.title} />
             </div>
-            <div className="song-info">
+            {/*<div className="song-info">
+              <div className="song-title">{currentlyPlaying.title}</div>
+              <div className="song-artist">{currentlyPlaying.artist}</div>
+            </div>*/}
+            {/* Thay đổi từ "song-info" thành "sidebar-song-info" */}
+            <div className="sidebar-song-info">
               <div className="song-title">{currentlyPlaying.title}</div>
               <div className="song-artist">{currentlyPlaying.artist}</div>
             </div>
@@ -99,9 +108,13 @@ export default function MusicSidebar() {
             {upNext.map((song) => (
               <div className="playlist-item" key={song.id}>
                 <div className="song-thumbnail-sidebar">
-                  <img src={song.image || "/placeholder.svg"} alt={song.title} />
+                  <img src={song.image || "/images/song.svg"} alt={song.title} />
                 </div>
-                <div className="song-info">
+                {/*<div className="song-info">
+                  <div className="song-title">{song.title}</div>
+                  <div className="song-artist">{song.artist}</div>
+                </div>*/}
+                <div className="sidebar-song-info">
                   <div className="song-title">{song.title}</div>
                   <div className="song-artist">{song.artist}</div>
                 </div>
