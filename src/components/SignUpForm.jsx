@@ -6,6 +6,7 @@ import "../styles/SignUp.css"
 export default function SignUpForm({ onClose, onLogin }) {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
+    username: "",
     fullName: "",
     email: "",
     password: "",
@@ -21,11 +22,39 @@ export default function SignUpForm({ onClose, onLogin }) {
     setFormData((prev) => ({ ...prev, agreeToTerms: e.target.checked }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Xử lý đăng ký ở đây
+  const handleSubmit = async (e) => {
+  e.preventDefault()
+  try {
+    const response = await fetch("http://localhost:8081/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: formData.username,
+        fullname: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+      }),
+    })
+console.log(JSON.stringify({
+        username: formData.username,
+        fullname: formData.fullName,
+        email: formData.email,
+        password: formData.password,    
+      }))
+    if (response.ok) {
+      alert("Đăng ký thành công!")
+      onLogin() // chuyển sang trang đăng nhập nếu muốn
+    } else {
+      const data = await response.json()
+      alert(`Đăng ký thất bại: ${data.message || "Lỗi không xác định"}`)
+    }
+  } catch (error) {
+    alert("Lỗi kết nối đến máy chủ.")
+    console.error(error)
   }
+}
 
   return (
     <div className="SignUp">
@@ -39,6 +68,15 @@ export default function SignUpForm({ onClose, onLogin }) {
         </h5>
         <span className='sigup-Closed-icon' onClick={onClose}></span>
         <form onSubmit={handleSubmit} className="input-group">
+          <p>Tên đăng nhập</p>
+          <input
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            placeholder="Username"
+            className="form-input"
+            required
+          />
           <p>Họ tên</p>
           <input
             name="fullName"
