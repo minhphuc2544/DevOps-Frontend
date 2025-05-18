@@ -11,6 +11,7 @@ import ForgotPassword from './ForgotPassword'
 import MusicPlayer from "../components/MusicPlayer"
 import MusicSidebar from "../components/MusicSidebar"
 import MusicBox from '../components/MusicBox'
+import HeaderBefore from './HeaderBefore'
 
 export default function Home() {
 
@@ -41,7 +42,7 @@ export default function Home() {
       <div 
       className={`Home-Page ${(isLoginOpen || isSignupOpen || isForgotPasswordOpen) ? "blur" : ""}`}>
         <div className='Content'>
-          <div className='Lookup-TaskBar'>
+          {/*<div className='Lookup-TaskBar'>
             <button className='icon-btn margin-left-40px'>
               <span className='arrow-left'/>
             </button>
@@ -65,7 +66,10 @@ export default function Home() {
 
             <button className='fill-btn link-text' onClick={openLogin}>Đăng nhập</button>
             
-          </div>
+          </div>*/}
+
+          <HeaderBefore onLogin={openLogin} onSignup={openSignup} />
+
           <div className='Main-Option'>
             <div className='Main'>
               <h2 className='section-heading'>Gần đây</h2>

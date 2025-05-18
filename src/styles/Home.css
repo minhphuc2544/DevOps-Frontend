@@ -41,11 +41,13 @@ html, body {
 
 .Content {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
+    margin-right: 170px;
 }
 
-.Content .Lookup-TaskBar {
+/*.Content .Lookup-TaskBar {
     flex: 0 0 10vh;
     background: #0D1918;
     width: 100%;
@@ -53,9 +55,9 @@ html, body {
     display: flex;
     height: 56px;
     gap: 2rem;
-}
+}*/
 
-.Content .Lookup-TaskBar .icon-btn {
+/*.Content .Lookup-TaskBar .icon-btn {
     border: none;
     height: 50px;
     width: 50px;
@@ -122,9 +124,9 @@ html, body {
     width: 100%;
     opacity: 1;
     padding-left: 4px;
-}
+}*/
 
-.Content .btn-music {
+/*.Content .btn-music {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,7 +150,7 @@ html, body {
 .Content .btn-music:hover,
 .Content .outline-btn:hover  {
     background-color: rgba(255, 255, 255, 0.1);
-}
+}*/
 
 .Content .fill-btn {
     display: flex;
@@ -182,14 +184,15 @@ html, body {
     flex: 1;
     display: flex;*/
     display: flex;
-    height: calc(100vh - 80px); /* 80px là chiều cao player */
+    height: calc(100vh - 140px); /* 80px là chiều cao player */
     min-height: 0;
 }
 
 .Main {
     flex: 1;
     min-width: 0;
-    background: #0D1918;
+    /*background: #0D1918;*/
+    background: #121212;
     color: #fff;
     padding: 0 2rem;
     overflow-y: auto;
@@ -260,13 +263,14 @@ html, body {
 
 .Option-TaskBar {
     position: relative;
-    flex: 0 0 15vw;       
-    background: #0D1918;
+    /*flex: 0 0 15vw;*/     
+    flex: 0 0 260px; /* Thay đổi từ 15vw thành giá trị cố định */
+    /*background: #0D1918;*/
+    background: #223c36;
     color: #fff;
-    padding: 1rem 0;
+    /*padding: 1rem 0;*/
+    padding: 0; /* Bỏ padding vì đã có padding trong .music-sidebar */
     flex-shrink: 0;
-    margin-right: 170px;
-    
 }
 
 /* Open Modal Login styles */
