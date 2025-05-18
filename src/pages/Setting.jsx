@@ -171,42 +171,41 @@ export default function SettingsPage() {
     }
   }
   return (
-    <div className="settings-app-container">
-      
-      <div className="main-content">
-        <Header />
-        <div className="settings-content">
-          <h1 className="settings-title">Cài đặt tài khoản</h1>
-          {activeView === "info" ? (
-            <ProfileInfo
-              isEditing={isEditing}
-              userInfo={userInfo}
-              errors={errors}
-              profileImage={profileImage}
-              handleInputChange={handleInputChange}
-              handleSave={handleSave}
-              setIsEditing={setIsEditing}
-              setShowImageModal={setShowImageModal}
-            />
-          ) : (
-            <PasswordChange
-              passwordData={passwordData}
-              setPasswordData={setPasswordData}
-              showCurrentPassword={showCurrentPassword}
-              showNewPassword={showNewPassword}
-              showConfirmPassword={showConfirmPassword}
-              setShowCurrentPassword={setShowCurrentPassword}
-              setShowNewPassword={setShowNewPassword}
-              setShowConfirmPassword={setShowConfirmPassword}
-              setActiveView={setActiveView}
-            />
-          )}
+    <>
+      <div className="settings-app-container">
+        <div className="main-content">
+          <Header />
+          <div className="settings-content">
+            <h1 className="settings-title">Cài đặt tài khoản</h1>
+            {activeView === "info" ? (
+              <ProfileInfo
+                isEditing={isEditing}
+                userInfo={userInfo}
+                errors={errors}
+                profileImage={profileImage}
+                handleInputChange={handleInputChange}
+                handleSave={handleSave}
+                setIsEditing={setIsEditing}
+                setShowImageModal={setShowImageModal}
+              />
+            ) : (
+              <PasswordChange
+                passwordData={passwordData}
+                setPasswordData={setPasswordData}
+                showCurrentPassword={showCurrentPassword}
+                showNewPassword={showNewPassword}
+                showConfirmPassword={showConfirmPassword}
+                setShowCurrentPassword={setShowCurrentPassword}
+                setShowNewPassword={setShowNewPassword}
+                setShowConfirmPassword={setShowConfirmPassword}
+                setActiveView={setActiveView}
+              />
+            )}
+          </div>
         </div>
+        <RightSidebar activeView={activeView} setActiveView={setActiveView} />
       </div>
-      <RightSidebar activeView={activeView} setActiveView={setActiveView} />
-      <div className="Music-Footer">
-          <MusicPlayer />
-      </div>
+      <MusicPlayer />
       <ImageUploadModal
         showImageModal={showImageModal}
         setShowImageModal={setShowImageModal}
@@ -221,6 +220,6 @@ export default function SettingsPage() {
         handleImageUrl={handleImageUrl}
         saveImage={saveImage}
       />   
-    </div>
+    </>
   )
 }
