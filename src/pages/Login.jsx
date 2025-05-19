@@ -27,8 +27,8 @@ export default function Login({ onClose, onForgotPassword, onSignup, setCurrentU
         const data = await response.json()
         alert(data.message)
         localStorage.setItem('token', data.token)
+        localStorage.setItem("username", username)
         setCurrentUser({ username })
-        close();
         // navigate('/pages/Home')
 
       } else {

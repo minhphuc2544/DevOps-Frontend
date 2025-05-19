@@ -1,5 +1,7 @@
 import "../styles/Setting.css"
 import { useState, useRef } from "react"
+import { useEffect } from "react"
+// Không cần import jwt-decode nữa
 import Header from "./Header"
 import ImageUploadModal from "./ImageUpload"
 import PasswordChange from "./PasswordChange"
@@ -28,9 +30,9 @@ export default function SettingsPage() {
   
   // Add validation errors state
   const [errors, setErrors] = useState({
-    name: "",
+    username: "",
+    fullname:"",
     email: "",
-    phone: "",
     createdAt: "",
   })
   const [passwordData, setPasswordData] = useState({
@@ -42,6 +44,55 @@ export default function SettingsPage() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+
+  // Fetch user info from backend
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const token = localStorage.getItem("token")
+        const username = localStorage.getItem("username") // Lấy username từ localStorage
+        
+        if (!token) {
+          console.error("Token không tồn tại.")
+          return
+        }
+        
+        if (!username) {
+          console.error("Username không tồn tại trong localStorage.")
+          return
+        }
+
+       const response = await fetch(`http://localhost:8080/user`, {
+        method: "POST", // Thay đổi thành POST
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: username }),
+      });
+
+        if (!response.ok) {
+          console.error("Lỗi API:", response.status)
+          throw new Error("Không thể lấy thông tin người dùng.")
+        }
+
+        const data = await response.json()
+        setUserInfo({
+          username: data.username || "",
+          fullname: data.fullname || "",
+          email: data.email || "",
+          createdAt: data.created_at?.split(" ")[0] || "",
+        })
+      } catch (error) {
+        console.error("Lỗi khi gọi API lấy user info:", error)
+      }
+    }
+
+    fetchUserInfo()
+  }, [])
+
+
   // Handle image upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0]
@@ -93,9 +144,9 @@ export default function SettingsPage() {
     // Here you would typically send the image to your backend
   }
   // Validation functions
-  const validateName = (name) => {
-    if (!name.trim()) return "Họ và tên không được để trống"
-    if (name.trim().length < 2) return "Họ và tên phải có ít nhất 2 ký tự"
+  const validateName = (username) => {
+    if (!username.trim()) return "Họ và tên không được để trống"
+    if (username.trim().length < 2) return "Họ và tên phải có ít nhất 2 ký tự"
     return ""
   }
   const validateEmail = (email) => {
@@ -105,11 +156,9 @@ export default function SettingsPage() {
     if (!emailRegex.test(email)) return "Email không hợp lệ"
     return ""
   }
-  const validatePhone = (phone) => {
-    if (!phone.trim()) return "Số điện thoại không được để trống"
-    // Remove spaces and other characters for validation
-    const phoneDigits = phone.replace(/\D/g, "")
-    if (phoneDigits.length !== 10) return "Số điện thoại phải có 10 chữ số"
+  const validateFullname = (fullname) => {
+    if (!fullname.trim()) return "Họ và tên không được để trống"
+    if (fullname.trim().length < 2) return "Họ và tên phải có ít nhất 2 ký tự"
     return ""
   }
   const validateDate = (date) => {
@@ -121,19 +170,19 @@ export default function SettingsPage() {
   }
   // Handle input change with validation
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target  // Sửa username thành name
     setUserInfo((prev) => ({ ...prev, [name]: value }))
     // Validate on change
     let errorMessage = ""
-    switch (name) {
-      case "name":
+    switch (name) {  // Sửa username thành name
+      case "username":
         errorMessage = validateName(value)
         break
       case "email":
         errorMessage = validateEmail(value)
         break
-      case "phone":
-        errorMessage = validatePhone(value)
+      case "fullname":
+        errorMessage = validateFullname(value)  // Sửa validatePhone thành validateFullname
         break
       case "createdAt":
         errorMessage = validateDate(value)
@@ -141,22 +190,22 @@ export default function SettingsPage() {
       default:
         break
     }
-    setErrors((prev) => ({ ...prev, [name]: errorMessage }))
+    setErrors((prev) => ({ ...prev, [name]: errorMessage }))  // Sửa username thành name
   }
   // Validate all fields before saving
   const validateAllFields = () => {
-    const nameError = validateName(userInfo.name)
+    const usernameError = validateName(userInfo.username)
     const emailError = validateEmail(userInfo.email)
-    const phoneError = validatePhone(userInfo.phone)
+    const fullnameError = validateFullname(userInfo.fullname)  // Sửa validatePhone thành validateFullname
     const dateError = validateDate(userInfo.createdAt)
     setErrors({
-      name: nameError,
+      username: usernameError,
       email: emailError,
-      phone: phoneError,
+      fullname: fullnameError,
       createdAt: dateError,
     })
     // Return true if no errors
-    return !nameError && !emailError && !phoneError && !dateError
+    return !usernameError && !emailError && !fullnameError && !dateError
   }
   // Handle save button click
   const handleSave = () => {

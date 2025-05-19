@@ -28,12 +28,12 @@ export default function ProfileInfo({
                   <div className="field-input-container">
                     <input
                       type="text"
-                      name="name"
-                      className={`field-input ${errors.name ? "field-error" : ""}`}
-                      value={userInfo.name}
+                      name="username"
+                      className={`field-input ${errors.username ? "field-error" : ""}`}
+                      value={userInfo.username}
                       onChange={handleInputChange}
                     />
-                    {errors.name && <div className="error-message">{errors.name}</div>}
+                    {errors.username && <div className="error-message">{errors.username}</div>}
                   </div>
                 </div>
   
@@ -52,16 +52,16 @@ export default function ProfileInfo({
                 </div>
   
                 <div className="profile-field">
-                  <div className="field-label">Số điện thoại:</div>
+                  <div className="field-label">Tên đầy đủ:</div>
                   <div className="field-input-container">
                     <input
                       type="text"
-                      name="phone"
-                      className={`field-input ${errors.phone ? "field-error" : ""}`}
-                      value={userInfo.phone}
+                      name="fullname"
+                      className={`field-input ${errors.fullname ? "field-error" : ""}`}
+                      value={userInfo.fullname}
                       onChange={handleInputChange}
                     />
-                    {errors.phone && <div className="error-message">{errors.phone}</div>}
+                    {errors.fullname && <div className="error-message">{errors.fullname}</div>}
                   </div>
                 </div>
   
@@ -88,16 +88,16 @@ export default function ProfileInfo({
             ) : (
               <>
                 <div className="profile-field">
-                  <div className="field-label">Họ và tên:</div>
-                  <div className="field-value">{userInfo.name}</div>
+                  <div className="field-label">Username:</div>
+                  <div className="field-value">{userInfo.username}</div>
                 </div>
                 <div className="profile-field">
                   <div className="field-label">Email:</div>
                   <div className="field-value">{userInfo.email}</div>
                 </div>
                 <div className="profile-field">
-                  <div className="field-label">Số điện thoại:</div>
-                  <div className="field-value">{userInfo.phone}</div>
+                  <div className="field-label">Fullname:</div>
+                  <div className="field-value">{userInfo.fullname}</div>
                 </div>
                 <div className="profile-field">
                   <div className="field-label">Ngày tạo:</div>
