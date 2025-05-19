@@ -11,10 +11,10 @@ export default function SettingsPage() {
   const [activeView, setActiveView] = useState("info")
   const [isEditing, setIsEditing] = useState(false)
   const [userInfo, setUserInfo] = useState({
-    name: "Tên của bạn",
-    email: "Email@gmail.com",
-    phone: "0969 999 999",
-    createdAt: "30/03/2025",
+    username: "",
+    fullname:"",
+    email: "",
+    createdAt: "",
   })
   // Add state for profile image
   const [profileImage, setProfileImage] = useState(null)

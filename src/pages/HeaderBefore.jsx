@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/HeaderBefore.css';
 
-export default function Header({ onLogin, onSignup }) {
+export default function Header({ onLogin, onSignup, currentUser }) {
     return (
       <header className="header">
         <div className="header-left">
@@ -14,8 +14,19 @@ export default function Header({ onLogin, onSignup }) {
         </div>
         <div className="header-right">
           <button className="header-button active">Music</button>
+          {currentUser ? (
+            <>
+            <img className="avatar" src="/public/music.svg"></img> 
+            <p className="welcome-user">{currentUser.username}</p>
+            </>
+      ) : (
+        <>
           <button className="header-button" onClick={onSignup}>Đăng ký</button>
           <button className="header-button filled" onClick={onLogin}>Đăng nhập</button>
+        </>
+      )}
+          {/* <button className="header-button" onClick={onSignup}>Đăng ký</button>
+          <button className="header-button filled" onClick={onLogin}>Đăng nhập</button> */}
         </div>
       </header>
     )

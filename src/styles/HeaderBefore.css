@@ -122,3 +122,19 @@
   background-size: 40px;
 }
 @media (max-width: 768px) { .header-left { max-width: 60%; } }
+
+.welcome-user {
+  font-weight: bold;
+  color: #4CAF50;         /* Xanh lá */
+  font-size: 16px;
+  margin-right: 12px;
+  align-items: center;
+}
+
+.avatar {
+  width: 30px;
+  height:30px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #4CAF50;
+}

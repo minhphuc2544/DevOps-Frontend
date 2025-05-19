@@ -15,6 +15,8 @@ import HeaderBefore from './HeaderBefore'
 
 export default function Home() {
 
+  const [currentUser, setCurrentUser] = useState(null)
+
   // for UI's purpose
   const [isLoginOpen, setLoginOpen] = useState(false);
   const openLogin = () => { setLoginOpen(true); return true; };
@@ -68,7 +70,15 @@ export default function Home() {
             
           </div>*/}
 
-          <HeaderBefore onLogin={openLogin} onSignup={openSignup} />
+          <HeaderBefore onLogin={openLogin} onSignup={openSignup} currentUser={currentUser}/>
+            {/* {currentUser ? (
+              <div className="Header-AFTER">
+                <p className="welcome-user">Xin chào, {currentUser.username}!</p>
+              </div>
+            ) : (
+              <HeaderBefore onLogin={openLogin} onSignup={openSignup} />
+            )} */}
+
 
           <div className='Main-Option'>
             <div className='Main'>
@@ -112,6 +122,7 @@ export default function Home() {
           onClose={closeLogin} 
           onForgotPassword={ () => {closeLogin(); openForgotPassword();} }
           onSignup={ () => {closeLogin(); openSignup();} }
+          setCurrentUser={setCurrentUser}
           />
         </div>
       )}
