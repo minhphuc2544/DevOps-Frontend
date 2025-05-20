@@ -1,12 +1,20 @@
 import '../styles/Login.css'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
+
 import EyeToggle from '../components/EyeToggle'
 
 export default function Login({ onClose, onForgotPassword, onSignup, setCurrentUser }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-    // const navigate = useNavigate()
+  const navigate = useNavigate()
+
+    //remove all cookies after user back to Login Page
+    useEffect(() => {
+        Cookies.remove('access_token');
+        Cookies.remove('username');
+    }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -15,6 +23,7 @@ export default function Login({ onClose, onForgotPassword, onSignup, setCurrentU
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          // "Authorization": `Bearer ${Cookies.get('access_token')}`,
         },
         body: JSON.stringify({
           username: username,
@@ -26,10 +35,23 @@ export default function Login({ onClose, onForgotPassword, onSignup, setCurrentU
       if (response.ok) {
         const data = await response.json()
         alert(data.message)
-        localStorage.setItem('token', data.token)
-        localStorage.setItem("username", username)
-        setCurrentUser({ username })
-        // navigate('/pages/Home')
+
+        // localStorage.setItem('token', data.token)
+        // localStorage.setItem("username", username)
+        // set the access_token to cookie
+        const oneHourFromNow = new Date();
+        oneHourFromNow.setHours(oneHourFromNow.getHours() + import.meta.env.VITE_TOKEN_EXPIRE_TIME);
+        Cookies.set('access_token', data.token, { expires: oneHourFromNow });
+        Cookies.set('username', username, { expires: oneHourFromNow });
+      //    useEffect(() => {
+      //   const access_token = Cookies.get('access_token');
+      //   if (!access_token) {
+      //       navigate('/pages/Login');
+      //       return;
+      //   }
+        
+      // }, []);
+        navigate('/pages/Home')
 
       } else {
         let message = 'Đăng nhập thất bại.'

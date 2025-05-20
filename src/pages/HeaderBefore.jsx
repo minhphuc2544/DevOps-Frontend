@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/HeaderBefore.css';
 
-export default function Header({ onLogin, onSignup, currentUser }) {
+export default function Header({ onLogin, onSignup, currentUser}) {
     return (
       <header className="header">
         <div className="header-left">
@@ -13,11 +13,11 @@ export default function Header({ onLogin, onSignup, currentUser }) {
           </div>
         </div>
         <div className="header-right">
-          {/*<button className="header-button active">Music</button>*/}
-          {currentUser ? (
+          {currentUser  ? (
             <>
+              <button className="header-button active">Music</button>
               <img className="avatar" src="/public/music.svg"></img> 
-              <p className="welcome-user">{currentUser.username}</p>
+              <p className="welcome-user">{currentUser}</p>
             </>
       ) : (
         <>

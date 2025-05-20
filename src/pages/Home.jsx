@@ -1,7 +1,7 @@
 import '../styles/Home.css'
 
 import { useNavigate } from "react-router-dom";
-
+import Cookies from "js-cookie";  
 import { useEffect, useState } from "react";
 import SlidingTabs from '../components/SlidingTabs'
 import Login from './Login'
@@ -15,8 +15,8 @@ import HeaderBefore from './HeaderBefore'
 
 export default function Home() {
 
-  const [currentUser, setCurrentUser] = useState(null)
-
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
   // for UI's purpose
   const [isLoginOpen, setLoginOpen] = useState(false);
   const openLogin = () => { setLoginOpen(true); return true; };
@@ -36,7 +36,17 @@ export default function Home() {
 
   const [email, setEmail] = useState("");
 
+  useEffect(() => {
+  const access_token = Cookies.get('access_token');
 
+  if (!access_token) {
+
+  } else {
+    const username = Cookies.get('username');
+    setCurrentUser(username); 
+  }
+}, []);
+   
 
 
   return (
@@ -69,6 +79,7 @@ export default function Home() {
             <button className='fill-btn link-text' onClick={openLogin}>Đăng nhập</button>
             
           </div>*/}
+
 
           <HeaderBefore onLogin={openLogin} onSignup={openSignup} currentUser={currentUser}/>
             {/* {currentUser ? (

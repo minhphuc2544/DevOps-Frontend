@@ -2,14 +2,17 @@ import "../styles/Setting.css"
 import { useState, useRef } from "react"
 import { useEffect } from "react"
 // Không cần import jwt-decode nữa
+import Cookies from "js-cookie"
 import Header from "./Header"
 import ImageUploadModal from "./ImageUpload"
 import PasswordChange from "./PasswordChange"
 import ProfileInfo from "./ProfileInfo"
 import RightSidebar from "./RightSideBar"
 import MusicPlayer from "../components/MusicPlayer"
+import { useNavigate } from "react-router-dom";
 
 export default function SettingsPage() {
+  const navigate = useNavigate()
   const [activeView, setActiveView] = useState("info")
   const [isEditing, setIsEditing] = useState(false)
   const [userInfo, setUserInfo] = useState({
@@ -48,49 +51,52 @@ export default function SettingsPage() {
 
   // Fetch user info from backend
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const token = localStorage.getItem("token")
-        const username = localStorage.getItem("username") // Lấy username từ localStorage
-        
-        if (!token) {
-          console.error("Token không tồn tại.")
-          return
+      const fetchUserInfo = async () => {
+        try {
+          //Get token and username from Cookie
+          const token = Cookies.get('access_token')
+          const username = Cookies.get('username') 
+          
+          if (!token) {
+            console.error("Token không tồn tại.")
+            return
+          }
+          
+          if (!username) {
+            console.error("Username không tồn tại trong localStorage.")
+            return
+          }
+  
+         const response = await fetch(`http://localhost:8080/user`, {
+          method: "POST", // Thay đổi thành POST
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: username }),
+        });
+  
+          if (!response.ok) {
+            console.error("Lỗi API:", response.status)
+            throw new Error("Không thể lấy thông tin người dùng.")
+          }
+          
+          
+          const data = await response.json()
+          setUserInfo({
+            username: data.username || "",
+            fullname: data.fullname || "",
+            email: data.email || "",
+            createdAt: data.created_at?.split(" ")[0] || "",
+          })
+        } catch (error) {
+          console.error("Lỗi khi gọi API lấy user info:", error)
         }
-        
-        if (!username) {
-          console.error("Username không tồn tại trong localStorage.")
-          return
-        }
-
-       const response = await fetch(`http://localhost:8080/user`, {
-        method: "POST", // Thay đổi thành POST
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: username }),
-      });
-
-        if (!response.ok) {
-          console.error("Lỗi API:", response.status)
-          throw new Error("Không thể lấy thông tin người dùng.")
-        }
-
-        const data = await response.json()
-        setUserInfo({
-          username: data.username || "",
-          fullname: data.fullname || "",
-          email: data.email || "",
-          createdAt: data.created_at?.split(" ")[0] || "",
-        })
-      } catch (error) {
-        console.error("Lỗi khi gọi API lấy user info:", error)
       }
-    }
-
-    fetchUserInfo()
-  }, [])
+  
+      fetchUserInfo()
+    }, []);
+  
 
 
   // Handle image upload
