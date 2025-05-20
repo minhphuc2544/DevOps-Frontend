@@ -145,6 +145,10 @@ export default function Home() {
             closeForgotPassword();      
             openResetPassword();       
           }}
+          onShowSignUp={() => {
+            closeForgotPassword();
+            openSignup();
+          }}
           />
         </div>
       )}

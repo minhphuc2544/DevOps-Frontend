@@ -95,17 +95,15 @@ export default function Login({ onClose, onForgotPassword, onSignup, setCurrentU
           </div>
 
           <div className='login-group'>
-            <button className='other-login' type="button"></button>
             <button className='btn-login' type="submit">Đăng nhập</button>
           </div>
         </form>
-      </div>
 
-      <div className='signup-prompt'>
-        <p>Bạn chưa có tài khoản?
-          <button className='signup-link' onClick={onSignup}> Đăng kí </button>
-          ngay
-        </p>
+        <div className='signup-prompt'>
+          <p>Bạn chưa có tài khoản?{' '}
+            <button className='signup-link' onClick={onSignup}>Đăng kí</button>
+          </p>
+        </div>
       </div>
     </div>
   )

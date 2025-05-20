@@ -184,16 +184,26 @@ body {
 .header-button.active {background-color: rgba(255, 255, 255, 0.1); }
 
 .notification-button {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
-  
-  cursor: pointer;
+  background-color: rgba(255,255,255,0.08); /* nền nhẹ cho nổi bật */
   background-image: url("../assets/icons/notification-icon.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 60% 60%; /* icon nhỏ vừa phải */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  position: relative;
+  margin-left: 8px;
+}
+.notification-button:hover {
+  background-color: rgba(77, 171, 247, 0.18); /* xanh nhạt khi hover */
+  box-shadow: 0 2px 8px rgba(77, 171, 247, 0.15);
 }
 
 .user-avatar {

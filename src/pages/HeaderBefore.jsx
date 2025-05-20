@@ -13,11 +13,11 @@ export default function Header({ onLogin, onSignup, currentUser }) {
           </div>
         </div>
         <div className="header-right">
-          <button className="header-button active">Music</button>
+          {/*<button className="header-button active">Music</button>*/}
           {currentUser ? (
             <>
-            <img className="avatar" src="/public/music.svg"></img> 
-            <p className="welcome-user">{currentUser.username}</p>
+              <img className="avatar" src="/public/music.svg"></img> 
+              <p className="welcome-user">{currentUser.username}</p>
             </>
       ) : (
         <>

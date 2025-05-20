@@ -1,9 +1,14 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { Eye, EyeOff } from "lucide-react"
+import { Eye, EyeOff, Info } from "lucide-react"
+import InfoModal from "../pages/InfoModal"
+import TermsOfUseContent from "../pages/TermOfUse"
+import PrivacyPolicyContent from "../pages/PrivacyPolicy"
 import "../styles/SignUp.css"
 
 export default function SignUpForm({ onClose, onLogin }) {
+  const [showTerms, setShowTerms] = useState(false)
+  const [showPrivacy, setShowPrivacy] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     username: "",
@@ -62,9 +67,22 @@ console.log(JSON.stringify({
         <h2>Đăng ký</h2>
         <h5>
           Để tải lên âm nhạc và hình ảnh, bạn phải chấp nhận các{" "}
-          <Link to="/terms" className="signup-link">điều khoản</Link>{" "}và{" "}
-          <Link to="/privacy" className="signup-link">điều kiện</Link>{" "}
-          của chúng tôi trên trang web
+          <span 
+            className="signup-link" 
+            style={{cursor: "pointer"}} 
+            onClick={() => setShowTerms(true)}
+          >
+            điều khoản
+          </span>
+            {" "}và{" "}
+          <span 
+            className="signup-link" 
+            style={{cursor: "pointer"}} 
+            onClick={() => setShowPrivacy(true)}
+          >
+            điều kiện
+          </span>
+            {" "}của chúng tôi trên trang web
         </h5>
         <span className='sigup-Closed-icon' onClick={onClose}></span>
         <form onSubmit={handleSubmit} className="input-group">
@@ -125,14 +143,13 @@ console.log(JSON.stringify({
               />
               <label htmlFor="terms" className="remember-me-label">
                 Tôi đã đọc và chấp nhận{" "}
-                <Link to="/terms" className="signup-link">điều khoản</Link>{" "}và{" "}
-                <Link to="/privacy" className="signup-link">điều kiện</Link>
+                <span className="signup-link" style={{cursor: "pointer"}} onClick={() => setShowTerms(true)}>điều khoản</span>{" "}và{" "}
+                <span className="signup-link" style={{cursor: "pointer"}} onClick={() => setShowPrivacy(true)}>điều kiện</span>
               </label>
             </div>
           </div>
 
           <div className="login-group">
-            <a href="#" className="other-login"></a>
             <button className="btn-submit" type="submit" disabled={!formData.agreeToTerms}>
               Đăng ký
             </button>
@@ -146,6 +163,18 @@ console.log(JSON.stringify({
           </p>
         </div>
       </div>
+      <InfoModal
+        isOpen={showTerms}
+        onClose={() => setShowTerms(false)}
+        title="Thỏa thuận sử dụng"
+        content={<TermsOfUseContent />}
+      />
+      <InfoModal
+        isOpen={showPrivacy}
+        onClose={() => setShowPrivacy(false)}
+        title="Chính sách bảo mật"
+        content={<PrivacyPolicyContent />}
+      />
     </div>
   )
 }

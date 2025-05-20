@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-export default function ForgotPassword({ onClose, onEmailSubmitted }) {
+export default function ForgotPassword({ onClose, onEmailSubmitted, onShowSignUp }) {
   const [email, setEmail] = useState("")
-
   const handleSubmit = (e) => {
     e.preventDefault()
     // Handle email submission logic here
@@ -36,9 +35,6 @@ export default function ForgotPassword({ onClose, onEmailSubmitted }) {
           </div>
 
           <div style={styles.buttonGroup}>
-            <button type="button" style={styles.googleButton}>
-              <span style={styles.googleIcon}>G</span>
-            </button>
             <button type="submit" style={styles.submitButton}>
               Gửi Email
             </button>
@@ -47,9 +43,12 @@ export default function ForgotPassword({ onClose, onEmailSubmitted }) {
 
         <div style={styles.footer}>
           Bạn chưa có tài khoản?{" "}
-          <Link to="/signup" style={styles.link}>
-            Đăng ký ngay
-          </Link>
+          <span
+            style={{ ...styles.link, cursor: "pointer" }}
+            onClick={onShowSignUp}
+          >
+          Đăng ký ngay
+          </span>
         </div>
       </div>
     </div>
@@ -67,6 +66,7 @@ const styles = {
     padding: "20px",
   },
   formContainer: {
+    position: "relative",
     width: "100%",
     maxWidth: "400px",
     backgroundColor: "#568171",
@@ -92,11 +92,11 @@ const styles = {
   },
   closeButton: {
     position: "absolute",
-    top: "250px",
-    right: "560px",
+    top: "1px",
+    right: "10px",
     background: "transparent",
     border: "none",
-    fontSize: "44px",
+    fontSize: "32px",
     color: "white",
     cursor: "pointer",
   },
@@ -115,22 +115,6 @@ const styles = {
     display: "flex",
     gap: "10px",
     marginBottom: "20px",
-  },
-  googleButton: {
-    width: "48px",
-    height: "48px",
-    backgroundColor: "transparent",
-    border: "1px solid white",
-    borderRadius: "8px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-  },
-  googleIcon: {
-    color: "white",
-    fontSize: "24px",
-    fontWeight: "bold",
   },
   submitButton: {
     flex: 1,
