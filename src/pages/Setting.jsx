@@ -7,7 +7,7 @@ import Header from "./Header"
 import ImageUploadModal from "./ImageUpload"
 import PasswordChange from "./PasswordChange"
 import ProfileInfo from "./ProfileInfo"
-import RightSidebar from "./RightSideBar"
+import RightSidebar from "./RightSidebar"
 import MusicPlayer from "../components/MusicPlayer"
 import { useNavigate } from "react-router-dom";
 

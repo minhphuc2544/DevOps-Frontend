@@ -1,6 +1,7 @@
-export default function MusicBox({ title, artist }) {
+export default function MusicBox({ title, artist, onClick  }) {
+  
     return (
-      <div className="music-box">
+      <div className="music-box" onClick={onClick}>
         <div className="music-option" >
         <div className="music-option">
           <svg

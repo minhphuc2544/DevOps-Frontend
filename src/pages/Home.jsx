@@ -36,16 +36,54 @@ export default function Home() {
 
   const [email, setEmail] = useState("");
 
+  const [musicList, setMusicList] = useState([]);
+  const [currentSong, setCurrentSong] = useState(null);
+  const [nameSong, setNameSong] = useState(null);
+
   useEffect(() => {
+  const token = Cookies.get('access_token');
+  const username = Cookies.get('username');
+  setCurrentUser(username);
+  if (!token) ;
+
+  else {fetch('http://localhost:8082/getAllMusic', {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.music) setMusicList(data.music);
+      // console.log(data.music)
+    })
+    .catch((err) => console.error("Error fetching music:", err));
+}}, []);
+
+
+  useEffect(() => {
+  const fetchUserInfo = async () => {
   const access_token = Cookies.get('access_token');
 
   if (!access_token) {
 
   } else {
-    const username = Cookies.get('username');
-    setCurrentUser(username); 
+    const response = await fetch(`http://localhost:8080/user`, {
+          method: "POST", // Thay đổi thành POST
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: username }),
+        });
+      
+      if (response.ok){
+        const data = await response.json()
+        Cookies.set('id', data.id, { expires: oneHourFromNow });
+      }
+    
   }
-}, []);
+}}, []);
    
 
 
@@ -97,21 +135,49 @@ export default function Home() {
               <SlidingTabs tabs={['Âm nhạc', 'Danh sách', 'Video', 'Podcast' ]} />               
               <div className='display-recent'>
               {/* gọi thanh phần âm nhạc */}
-              <MusicBox title="Cinnamon girl" artist="Lana Delray" />
+              {/* <MusicBox title="Cinnamon girl" artist="Lana Delray" />
               <MusicBox title="Mijesty" artist="Eminem" />
               <MusicBox title="Country song" artist="Seether" />
               <MusicBox title="Mijesty" artist="Eminem" />
-              <MusicBox title="Country song" artist="Seether" />
+              <MusicBox title="Country song" artist="Seether" /> */}
+              {musicList.length === 0 ? (
+                  <p>Không có bài hát nào. Hãy thêm nhạc!</p>
+                ) : (
+                  musicList.map((song) => (
+                    <MusicBox
+                      key={song.id}
+                      title={song.name}
+                      artist={song.artist}
+                      onClick={() => {setCurrentSong(song.accessurl); setNameSong(song.name);} 
+                      }
+                      
+                    />
+                  ))
+                )}
+
               </div>
               
               <h2 className='section-heading'>Gợi ý</h2>
               <SlidingTabs tabs={['Âm nhạc', 'Danh sách', 'Video', 'Podcast' ]} />               
               <div className='display-recent'>
-              <MusicBox title="Cinnamon girl" artist="Lana Delray" />
+              {/* <MusicBox title="Cinnamon girl" artist="Lana Delray" />
               <MusicBox title="Mijesty" artist="Eminem" />
               <MusicBox title="Country song" artist="Seether" />
               <MusicBox title="Mijesty" artist="Eminem" />
-              <MusicBox title="Country song" artist="Seether" />
+              <MusicBox title="Country song" artist="Seether" /> */}
+              {musicList.length === 0 ? (
+                <p>Không có bài hát nào. Hãy thêm nhạc!</p>
+              ) : (
+                musicList.map((song) => (
+                  <MusicBox
+                    key={song.id}
+                    title={song.name}
+                    artist={song.artist}
+                    onClick={() => {setCurrentSong(song.accessurl); setNameSong(song.name)}}
+                  />
+                ))
+              )}
+
               </div>
             </div>
             <div className="Option-TaskBar">
@@ -122,7 +188,8 @@ export default function Home() {
 
         {/* This is tab music */}
         <div className="Music-Footer">
-          <MusicPlayer />
+          {/* <MusicPlayer /> */}
+          <MusicPlayer currentSong={currentSong} nameSong={nameSong} />
         </div>
 
       </div>

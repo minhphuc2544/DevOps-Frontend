@@ -11,10 +11,10 @@ export default function Login({ onClose, onForgotPassword, onSignup, setCurrentU
   const navigate = useNavigate()
 
     //remove all cookies after user back to Login Page
-    useEffect(() => {
-        Cookies.remove('access_token');
-        Cookies.remove('username');
-    }, []);
+    // useEffect(() => {
+    //     Cookies.remove('access_token');
+    //     Cookies.remove('username');
+    // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -51,6 +51,21 @@ export default function Login({ onClose, onForgotPassword, onSignup, setCurrentU
       //   }
         
       // }, []);
+      
+      // const response = await fetch(`http://localhost:8080/user`, {
+      //     method: "POST", // Thay đổi thành POST
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({ username: username }),
+      //   });
+      
+      // if (response.ok){
+      //   const data = await response.json()
+      //   Cookies.set('id', data.id, { expires: oneHourFromNow });
+      // }
+
         navigate('/pages/Home')
 
       } else {
