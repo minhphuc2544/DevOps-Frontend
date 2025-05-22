@@ -141,7 +141,7 @@ export default function Home() {
               <MusicBox title="Mijesty" artist="Eminem" />
               <MusicBox title="Country song" artist="Seether" /> */}
               {musicList.length === 0 ? (
-                  <p>Không có bài hát nào. Hãy thêm nhạc!</p>
+                  <p>Không có bài hát nào. Hãy đăng nhập!</p>
                 ) : (
                   musicList.map((song) => (
                     <MusicBox
@@ -166,7 +166,7 @@ export default function Home() {
               <MusicBox title="Mijesty" artist="Eminem" />
               <MusicBox title="Country song" artist="Seether" /> */}
               {musicList.length === 0 ? (
-                <p>Không có bài hát nào. Hãy thêm nhạc!</p>
+                <p>Không có bài hát nào. Hãy đăng nhập!</p>
               ) : (
                 musicList.map((song) => (
                   <MusicBox

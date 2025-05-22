@@ -139,6 +139,7 @@ const Menu = () => {
   const location = useLocation()
   const [activeItem, setActiveItem] = useState(location.pathname)
 
+  
   const menuItems = [
     { path: "/", label: "Nhà", icon: <HomeIcon /> },
     { path: "/playlists", label: "Tuyển tập", icon: <PlaylistIcon /> },

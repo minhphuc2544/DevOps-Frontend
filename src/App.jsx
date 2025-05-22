@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import SettingsPage from "./pages/Setting";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 import "./styles/App.css"
 
 
@@ -20,6 +21,7 @@ export default function App() {
       <Route path={`${baseURL}/setting`} element={<SettingsPage />} />
       <Route path={`${baseURL}/signup`} element={<SignUp />} />
       <Route path={`${baseURL}/login`} element={<Login />} />
+      <Route path={`${baseURL}/logout`} element={<Logout />} />
     </Routes>
         </div>
     </div>
