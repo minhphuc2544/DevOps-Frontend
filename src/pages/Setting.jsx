@@ -67,7 +67,7 @@ export default function SettingsPage() {
             return
           }
   
-         const response = await fetch(`http://localhost:8080/user`, {
+         const response = await fetch(`http://localhost:8080/user/me`, {
           method: "POST", // Thay đổi thành POST
           headers: {
             Authorization: `Bearer ${token}`,
