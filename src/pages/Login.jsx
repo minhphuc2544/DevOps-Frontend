@@ -19,7 +19,7 @@ export default function Login({ onClose, onForgotPassword, onSignup, setCurrentU
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('http://localhost:8081/login', {
+      const response = await fetch('http://muzique-load-balancer-987512434.us-east-1.elb.amazonaws.com/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

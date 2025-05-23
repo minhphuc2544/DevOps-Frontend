@@ -30,7 +30,7 @@ export default function SignUpForm({ onClose, onLogin }) {
   const handleSubmit = async (e) => {
   e.preventDefault()
   try {
-    const response = await fetch("http://localhost:8081/signup", {
+    const response = await fetch("http://muzique-load-balancer-987512434.us-east-1.elb.amazonaws.com/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

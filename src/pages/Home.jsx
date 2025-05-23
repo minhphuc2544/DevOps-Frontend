@@ -46,7 +46,7 @@ export default function Home() {
   setCurrentUser(username);
   if (!token) ;
 
-  else {fetch('http://localhost:8082/getAllMusic', {
+  else {fetch('http://muzique-load-balancer-987512434.us-east-1.elb.amazonaws.com/task/getAllMusic', {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ export default function Home() {
   if (!access_token) {
 
   } else {
-    const response = await fetch(`http://localhost:8080/user`, {
+    const response = await fetch(`http://muzique-load-balancer-987512434.us-east-1.elb.amazonaws.com/user/me`, {
           method: "POST", // Thay đổi thành POST
           headers: {
             Authorization: `Bearer ${token}`,
