@@ -66,8 +66,8 @@ export default function SettingsPage() {
             console.error("Username không tồn tại trong localStorage.")
             return
           }
-  
-         const response = await fetch(`http://localhost:8080/user/me`, {
+
+         const response = await fetch(`http://muzique-load-balancer-987512434.us-east-1.elb.amazonaws.com/user/me`, {
           method: "POST", // Thay đổi thành POST
           headers: {
             Authorization: `Bearer ${token}`,
